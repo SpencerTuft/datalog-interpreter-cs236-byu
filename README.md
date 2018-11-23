@@ -1,23 +1,25 @@
 # datalog-interpreter-cs236-byu
 
-### Table of Contents
+## Table of Contents
 - [Project Description](#project-description)
-- [Part 1](#part-1)
-      - [union and join](#union-and-join)
-- [Part 2](#part-2)
-      - [interpreting rules](#interpreting-rules)
+- [Requirements](#requirements)
+    + [Part 1](#part-1)
+        * [union and join](#union-and-join)
+    + [Part 2](#part-2)
+        * [interpreting rules](#interpreting-rules)
 - [Evaluating Rules](#evaluating-rules)
 - [Assumptions](#assumptions)
 - [Examples](#examples)
-- [Another Example](#another-example)
+  * [Another Example](#another-example)
 - [FAQ](#faq)
 
-### Project Description
+## Project Description
 Extend the [relational database](https://wiki.cs.byu.edu/cs-236/relational-database) for Datalog to implement the rules in the input program. This means you need the union ( ∪ ) and join ( ⋈ ) operators. At the end of this project, your interpreter should be able to handle all aspects of the Datalog in this course. Please review the [project standards](https://wiki.cs.byu.edu/cs-236/project-standards) for the pass-off requirements as *the time-bound for running time in pass-off is strictly enforced for this project*.
 
 As with the other projects, this project is divided into two parts: extending the relation class with union and join and then interpreting rules.
 
-### Part 1
+## Requirements
+#### Part 1
 ###### union and join
 Extend the relation class from the previous project to support union and natural join. Include at least 10 automatic tests that validate the functionality of both operators. The majority of the tests should cover natural join. Every test must be documented with at least one sentence justifying its existence. Be sure to cover corner cases (of which there are several).
 
@@ -33,7 +35,7 @@ For this project, each test case you create should pass because the actual outpu
 
 The pass-off is based on the quality of tests and whether or not the solution passes. If a test does not automatically compare actual and expected out as described above, it won't be counted. If more than one test case tests the same thing, only the first test case will be counted.
 
-### Part 2
+#### Part 2
 ###### interpreting rules
 Implement a least-fixed-point algorithm to interpret rules from the Datalog input before interpreting the queries. The rules should add new facts to the relations in the database. By way of clarification, the processing of queries in this project is the same as for the [last project](https://wiki.cs.byu.edu/cs-236/relational-database) . The only thing new is the interpretation of the rules to generate new facts before answering the queries.
 
@@ -47,7 +49,7 @@ As a reminder, the rules are repeatedly evaluated until no new facts are added t
 
 Part 2 is scored on a set of 10 private tests at submission.
 
-### Evaluating Rules
+## Evaluating Rules
 There are several ways to evaluate rules. The most direct way is to use the mental model of an expression tree, where each predicate in the rule is evaluated as a query to return a relation, and that relation returned by the predicate is then natural joined with the relations for other predicates in the rule. This process is best understood as a simple traversal of the rule, evaluating each predicate as a query, and then gathering the results with a natural join. As a breakdown into steps, it might proceed as follows:
 
 1. *Evaluate the predicates on the right-hand side of the rule*: For every predicate on the right hand side of a rule, evaluate that predicate in the same way queries are evaluated in the previous project. The result of the evaluation should be a relation. If there are n predicates on the right hand side of a rule, then there should be n intermediate relations from each predicate.
@@ -58,14 +60,14 @@ There are several ways to evaluate rules. The most direct way is to use the ment
 
 That is the algorithm for evaluating one rule. Each rule potentially adds new facts to a relation. The fixed-point algorithm repeatedly performs iterations on the rules adding new facts from each rule as the facts are generated. Each iteration may change the database by adding at least one new tuple to at least one relation in the database. The fixed-point algorithm terminates when an iteration of the rule expression set does not union a new tuple to any relation in the database.
 
-### Assumptions
+## Assumptions
 As a reminder, our goal is not to build an industrial strength interpreter. Additional issues arise, which you need not check. Without checking, you may assume:
 
 - Attribute names in the schemes and variable names in the rules have distinct name spaces: no attribute name will appear as a variable in a rule.
 - Only identifiers appear in a rule head, and they are unique; no two identifiers in a rule head are the same.
 - Every identifier in the head will appear in at least one predicate in the body (the right-hand side) of the rule.
 
-### Examples
+## Examples
 
 The examples from the prior project are valid for this project. In addition, you might consider the following (remembering that these are not sufficient to test your code):
 
@@ -100,7 +102,7 @@ R('1','4')?
 ```
 How would you edit this example to compute a full transitive closure?
 
-### FAQ
+## FAQ
 *When should a rule update the associated relation?*
 
 New facts should be added to the relation as soon as a rule associated with the relation is evaluated. As a example, if there are two rules, R1 and R2, for relation A, then R1 is evaluated, and any new facts it generates are added to A. Then R2 is evaluated using the updated relation A that contains new facts from R1, and any new facts R2 generates are added to A.
