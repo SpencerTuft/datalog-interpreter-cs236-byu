@@ -1,0 +1,21 @@
+
+
+Schemes:
+
+x(A,B,C)
+y(B,C,D)
+z(A,B,C,D)
+
+Facts:
+
+x('2','2','2').
+y('2','2','4').
+
+Rules:
+
+z(a,b,c,d) :- x(a,b,c), y(b,c,d).
+
+Queries:
+
+z(a,b,c,d)?
+

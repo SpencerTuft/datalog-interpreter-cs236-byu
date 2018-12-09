@@ -1,2 +1,3 @@
 .idea
-/cmake-debug
+/cmake-build-debug
+/.DS_Store

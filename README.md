@@ -21,19 +21,19 @@ As with the other projects, this project is divided into two parts: extending th
 ## Requirements
 #### Part 1
 ###### union and join
-Extend the relation class from the previous project to support union and natural join. Include at least 10 automatic tests that validate the functionality of both operators. The majority of the tests should cover natural join. Every test must be documented with at least one sentence justifying its existence. Be sure to cover corner cases (of which there are several).
+Extend the relation class from the previous project to support union and natural join. Include at least 10 automatic test that validate the functionality of both operators. The majority of the test should cover natural join. Every test must be documented with at least one sentence justifying its existence. Be sure to cover corner cases (of which there are several).
 
-Further, all the tests must be automatic; automatic means the tests run without any user input and reports to the console the status of every test: pass or fail.
+Further, all the test must be automatic; automatic means the test run without any user input and reports to the console the status of every test: pass or fail.
 
 - *Command line*: no command line arguments
 - *Input*: none
-- *Output*: A pass/fail report for each test. (see below for further details on these tests)
+- *Output*: A pass/fail report for each test. (see below for further details on these test)
 
 The only text that needs to be outputted to the console is the test number and whether it passed or not (but you may definitely output more!). The TAs will look at your code to make sure the test cases do what you say they are doing in the comments. They will also make sure you implemented the union and join functions. *The test cases you come up with should be different that the examples provided by the wiki (i.e. use different schemes, facts, rules, etc.)*.
 
-For this project, each test case you create should pass because the actual output of your program should equal the expected output. The pass/fail report of a test is based on a comparison between the expected result and the actual result of each test. The comparison must be made automatically by your tester. This means that your tester must have the expected output in the code to compare with the actual output in an if-else statement; the actual output is the relation that is created after performing the union and/or join operations, while the expected output is what you calculate the relation should be after performing the operations. Common ways to check if they are equal include creating a method that tests if two relations have the same name, schema, and tuples; or creating a toString function for the relation class and comparing the strings for each relation. It is up to you how to do this, but what is not allowed is always outputting that each test passed without actually checking that the code does what it is supposed to do.
+For this project, each test case you create should pass because the actual output of your program should equal the expected output. The pass/fail report of a test is based on a comparison between the expected result and the actual result of each test. The comparison must be made automatically by your tester. This means that your tester must have the expected output in the code to compare with the actual output in an if-else statement; the actual output is the relation that is created after performing the union and/or join operations, while the expected output is what you calculate the relation should be after performing the operations. Common ways to check if they are equal include creating a method that test if two relations have the same name, schema, and tuples; or creating a toString function for the relation class and comparing the strings for each relation. It is up to you how to do this, but what is not allowed is always outputting that each test passed without actually checking that the code does what it is supposed to do.
 
-The pass-off is based on the quality of tests and whether or not the solution passes. If a test does not automatically compare actual and expected out as described above, it won't be counted. If more than one test case tests the same thing, only the first test case will be counted.
+The pass-off is based on the quality of test and whether or not the solution passes. If a test does not automatically compare actual and expected out as described above, it won't be counted. If more than one test case test the same thing, only the first test case will be counted.
 
 #### Part 2
 ###### interpreting rules
@@ -47,7 +47,7 @@ As a reminder, the rules are repeatedly evaluated until no new facts are added t
 - *Input*: a valid datalog program
 - *Output*: see the [output specifications](https://wiki.cs.byu.edu/cs-236/datalog-parser#output-specifications) and [examples](https://wiki.cs.byu.edu/cs-236/datalog-parser#examples)
 
-Part 2 is scored on a set of 10 private tests at submission.
+Part 2 is scored on a set of 10 private test at submission.
 
 ## Evaluating Rules
 There are several ways to evaluate rules. The most direct way is to use the mental model of an expression tree, where each predicate in the rule is evaluated as a query to return a relation, and that relation returned by the predicate is then natural joined with the relations for other predicates in the rule. This process is best understood as a simple traversal of the rule, evaluating each predicate as a query, and then gathering the results with a natural join. As a breakdown into steps, it might proceed as follows:
