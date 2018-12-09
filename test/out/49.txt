@@ -1,2 +1,2 @@
-Schemes populated after 2 passes through the Rules.
-j('a')? No
+Schemes populated after 10 passes through the Rules.
+j('a')? Yes(1)

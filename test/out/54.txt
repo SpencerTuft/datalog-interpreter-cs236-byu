@@ -1,7 +1,0 @@
-Schemes populated after 2 passes through the Rules.
-Symmetric(Q,R)? No
-Reflexive(Q,R)? No
-Transitive('1',P)? No
-A('1','2')? Yes(1)
-Symmetric('2','1')? No
-SymTran(X,Y)? No

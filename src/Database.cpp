@@ -169,22 +169,24 @@ void Database::add(Rule rule) {
 
   // Identify rule
   auto head = rule.getHead();
+  auto head_name = head.get_id();
   auto predicates = rule.getList();
 
   // Look up in the database the relation referenced in the head of the rule
-  auto match = look_up(head.get_id());
-  if (match.empty() && match.undefined()) return; // Do nothing since the referenced relation does not exist
+  auto match = look_up(head_name);
+  if (match.undefined()) return; // Do nothing since the referenced relation does not exist
 
   // Evaluate predicates on the right side of the rule
   auto relations = evaluate(predicates);
 
   // Join resulting relations
-  Relation result = relations.at(0);
+  Relation result;
   size_t num_relations = relations.size();
+  if (num_relations) result = relations.at(0);
   if (num_relations > 1) {
     for (size_t i = 0; i < num_relations; i++) {
       if (i < num_relations - 1) {
-        result = relations[i].join(head.get_id(), relations[i + 1]);
+        result = result.join(head_name, relations[i + 1]);
       }
     }
   }
@@ -200,7 +202,8 @@ void Database::add(Rule rule) {
   }
 
   // Union with the relation in the database
-  add(match.__union(match.get_name(), result));
+  result = match.__union(match.get_name(), result);
+  if (!result.undefined()) add(result);
 }
 void Database::add(std::vector<Rule> rules) {
   auto database_tuple_count = [](auto &r) {
@@ -216,7 +219,6 @@ void Database::add(std::vector<Rule> rules) {
   int iteration_count = 0;
   while (before_tuple_count != after_tuple_count) {
     before_tuple_count = database_tuple_count(r);
-//    std::cout << "Before tuple count: " << before_tuple_count << std::endl << "After tuple count: " << after_tuple_count << std::endl;
     iteration_count++;
 
     // Extend rules and output results

@@ -198,15 +198,17 @@ Relation Relation::join(std::string name, Relation relation) {
 
   List h1 = this->get_header();
   List h2 = relation.get_header();
+  auto t1 = this->get_tuples();
+  auto t2 = relation.get_tuples();
   auto join_columns = join_on(h1, h2);
   auto new_header = deduplicate(h1, h2, join_columns);
   Relation temp_relation(std::move(name), new_header);
 
-  for (auto t1 : this->get_tuples()) {
-    for (auto t2 : relation.get_tuples()) {
-      if (can_join(t1, t2, join_columns)) {
+  for (auto tuple1 : t1) {
+    for (auto tuple2 : t2) {
+      if (can_join(tuple1, tuple2, join_columns)) {
         // Join tuples
-        Tuple joined(deduplicate(t1.values(), t2.values(), join_columns));
+        Tuple joined(deduplicate(tuple1.values(), tuple2.values(), join_columns));
         // Add new tuple to temp relation
         temp_relation.add(joined);
       }

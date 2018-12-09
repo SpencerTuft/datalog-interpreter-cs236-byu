@@ -1,3 +1,3 @@
 Schemes populated after 2 passes through the Rules.
 z(a,b,c,d)? Yes(1)
-  a='2', b='2', c='2'
+  a='2', b='2', c='2', d='4'
