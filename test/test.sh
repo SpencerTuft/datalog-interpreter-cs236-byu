@@ -19,7 +19,7 @@ do
     if !(cmp -s -- "${OUT_PATH}/${name}.txt" "${EXPECTED_PATH}/${name}.txt")
     then
         printf "\n%s" "${RED}FAILED${NORMAL} "
-        tkdiff ${OUT_PATH}/${name}.txt ${EXPECTED_PATH}/${name}.txt
+#        tkdiff ${OUT_PATH}/${name}.txt ${EXPECTED_PATH}/${name}.txt
     else
         printf "\n%s" "${GREEN}PASSED${NORMAL} "
     fi

@@ -203,7 +203,12 @@ void Database::add(Rule rule) {
 
   // Union with the relation in the database
   result = match.__union(match.get_name(), result);
-  if (!result.undefined()) add(result);
+  if (!result.undefined()) {
+//    std::cout << "Result:" << std::endl << result.str() << std::endl;
+    add(result);
+  } // else {
+//    std::cout << "No result" << std::endl;
+//  }
 }
 void Database::add(std::vector<Rule> rules) {
   auto database_tuple_count = [](auto &r) {
@@ -214,12 +219,13 @@ void Database::add(std::vector<Rule> rules) {
     return count;
   };
 
-  int before_tuple_count = database_tuple_count(r);
-  int after_tuple_count = 0;
+  int before_tuple_count = 0;
+  int after_tuple_count = database_tuple_count(r);
   int iteration_count = 0;
   while (before_tuple_count != after_tuple_count) {
-    before_tuple_count = database_tuple_count(r);
+    before_tuple_count = after_tuple_count;
     iteration_count++;
+//    std::cout << "-- Iteration: " << iteration_count << " --" << std::endl;
 
     // Extend rules and output results
     for (const auto &rule : rules) {

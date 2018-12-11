@@ -1,0 +1,38 @@
+Schemes populated after 3 passes through the Rules.
+snap(Id,'Snoopy',A,P)? Yes(1)
+  Id='33333', A='12 Apple St.', P='555-1234'
+csg(Course,'33333',Grade)? Yes(2)
+  Course='CS101', Grade='A-'
+  Course='EE200', Grade='B'
+cp(Course,'CS100')? Yes(2)
+  Course='CS101'
+  Course='EE200'
+cdh('EE200',Day,Hour)? Yes(3)
+  Day='F', Hour='10AM'
+  Day='M', Hour='10AM'
+  Day='W', Hour='1PM'
+cr('CS101',Room)? Yes(1)
+  Room='Turing Aud.'
+tthCourses(C)? Yes(2)
+  C='CS101'
+  C='PH100'
+before('CS100','CS206')? Yes(1)
+before('CS100',prerequisiteTo)? Yes(6)
+  prerequisiteTo='CS101'
+  prerequisiteTo='CS120'
+  prerequisiteTo='CS121'
+  prerequisiteTo='CS205'
+  prerequisiteTo='CS206'
+  prerequisiteTo='EE200'
+Schedule('Snoopy',C,R,D,H)? Yes(4)
+  C='CS101', R='Turing Aud.', D='Tu', H='10AM'
+  C='EE200', R='25 Ohm Hall', D='F', H='10AM'
+  C='EE200', R='25 Ohm Hall', D='M', H='10AM'
+  C='EE200', R='25 Ohm Hall', D='W', H='1PM'
+Grades('Snoopy',C,G)? Yes(2)
+  C='CS101', G='A-'
+  C='EE200', G='B'
+Students('CS101',R,N,G)? Yes(3)
+  R='Turing Aud.', N='C. Brown', G='A'
+  R='Turing Aud.', N='L. Van Pelt', G='B'
+  R='Turing Aud.', N='Snoopy', G='A-'

@@ -27,18 +27,7 @@ void Relation::add(Tuples tuples) {
   }
 }
 void Relation::add(Tuple tuple) {
-  if (t.empty()) t.emplace_back(tuple);
-  else {
-    for (size_t i = 0, max = t.size(); i < max; i++) {
-      if (tuple == t[i]) break; // Cannot add duplicates
-
-      if (t[i] > tuple) {
-        t.insert(t.begin() + i, tuple);
-      } else if (i + 1 == max) {
-        t.emplace_back(tuple);
-      }
-    }
-  }
+  t.insert(tuple);
 }
 void Relation::add(List list) {
   add(Tuple(std::move(list)));
@@ -77,7 +66,7 @@ List Relation::get_header() {
 std::string Relation::get_name() {
   return n;
 }
-std::vector<Tuple> Relation::get_tuples() {
+std::set<Tuple> Relation::get_tuples() {
   return t;
 }
 Relation Relation::select(int column, std::string value) {
@@ -230,14 +219,8 @@ Relation Relation::__union(std::string name, Relation relation) {
   // Check union compatibility
   if (!union_compatible(*this, relation)) return Relation();
 
-  // Add name and header
-  Relation combined(std::move(name), this->get_header());
-
-  // Add rows from this relation
-  auto rowsA = this->get_tuples();
-  for (const auto &row : rowsA) {
-    combined.add(row);
-  }
+  // Copy this relation with new name
+  Relation combined(std::move(name), this->get_header(), this->get_tuples());
 
   // Add rows from relation passed in
   auto rowsB = relation.get_tuples();
@@ -250,7 +233,7 @@ Relation Relation::__union(std::string name, Relation relation) {
 std::string Relation::str() {
   std::stringstream ss;
   for (auto &tuple : t) {
-    if (&tuple != &t[0]) ss << std::endl;
+    if (tuple != *t.begin()) ss << std::endl;
     ss << "  " << tuple.str(h);
   }
   return ss.str();

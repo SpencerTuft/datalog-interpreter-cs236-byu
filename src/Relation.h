@@ -7,10 +7,11 @@
 
 #include <string>
 #include <vector>
+#include <set>
 #include <map>
 #include "./Tuple.h"
 
-typedef std::vector<Tuple> Tuples;
+typedef std::set<Tuple> Tuples;
 
 class Relation {
  private:
@@ -34,7 +35,7 @@ class Relation {
   std::string resolve_column(int);
   List get_header();
   std::string get_name();
-  std::vector<Tuple> get_tuples();
+  std::set<Tuple> get_tuples();
   Relation select(int, std::string);
   Relation select(int, int);
   Relation select(std::vector<int>);
