@@ -1,13 +1,13 @@
 # Should handle no rules
 
 Schemes:
-  a(x)
+  a(x,z)
   b(y)
   c(x,y)
 
 Facts:
-  a('a').
-  b('b').
+  a('a', 'a').
+  b('b', 'a').
 
 Rules:
 
