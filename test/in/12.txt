@@ -1,0 +1,22 @@
+# Should finish the test in under 2 minutes
+
+
+Schemes:
+Table(a,b,c,d,e)
+
+
+Facts:
+Table('1','2','3','4','5').
+Table('6','7','8','9','0').
+
+
+Rules:
+Table(a,b,c,d,e) :- Table(e,d,c,b,a).
+Table(a,b,c,f,g) :- Table(a,b,c,d,e),Table(e,d,c,f,g).
+Table(a,b,c,d,e) :- Table(b,c,d,e,a).
+Table(a,b,c,d,e) :- Table(b,a,c,d,e).
+
+
+Queries:
+Table(a,b,c,d,e)?
+

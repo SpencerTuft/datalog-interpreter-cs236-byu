@@ -1,7 +1,0 @@
-Schemes populated after 2 passes through the Rules.
-cn('CS101',Name)? Yes(3)
-  Name='C. Brown'
-  Name='P. Patty'
-  Name='Snoopy'
-ncg('Snoopy',Course,Grade)? Yes(1)
-  Course='CS101', Grade='C'

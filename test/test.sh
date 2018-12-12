@@ -10,7 +10,7 @@ declare IN_PATH="./test/in"
 declare OUT_PATH="./test/out"
 declare EXPECTED_PATH="./test/expected"
 
-declare -a fileNames=("40" "44" "45" "46" "47" "48" "49" "54" "55" "61" "62")
+declare -a fileNames=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11")
 
 printf "%s\n" "${BLUE}Starting unit test${NORMAL}"
 for name in "${fileNames[@]}"
