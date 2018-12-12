@@ -1,0 +1,33 @@
+# Should populate the to and otp tables by the rules
+# Should successfully query for a row that is populated by the rules
+
+# c: caller id
+# o: operator
+# d: direction
+# e: extra
+# t: type
+# p: position
+
+Schemes:
+  code(C,O,D,E)
+  tcp(T,C,P)
+  to(T,O)
+  otp(O,T,P)
+
+Facts:
+  code('12345','C. Brown','North','Helpful').
+  code('11111','P. Patty','South','Friendly').
+  code('99999','D. Howard','East','Courteous').
+  tcp('a','12345','T').
+  tcp('a','11111','B').
+  tcp('a','99999','L').
+  tcp('b','12345','R').
+  tcp('b','11111','R').
+
+Rules:
+  to(t,o) :- code(C,o,D,E),tcp(t,C,P).
+  otp(o,t,p) :- code(C,o,D,E),tcp(t,C,p).
+
+Queries:
+  to('a',Operator)?
+  otp('D. Howard',Type,Position)?

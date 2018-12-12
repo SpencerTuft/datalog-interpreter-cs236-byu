@@ -1,0 +1,7 @@
+Schemes populated after 2 passes through the Rules.
+to('a',Operator)? Yes(3)
+  Operator='C. Brown'
+  Operator='D. Howard'
+  Operator='P. Patty'
+otp('D. Howard',Type,Position)? Yes(1)
+  Type='a', Position='L'

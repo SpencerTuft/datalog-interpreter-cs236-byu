@@ -1,0 +1,18 @@
+# Should join though the headers a and b are identical
+# Should leave table c empty
+
+Schemes:
+  a(x,y)
+  b(x,y)
+  c(x)
+
+Facts:
+  a('a','a').
+  b('a','b').
+
+Rules:
+  c(x) :- a(x,y), b(x,y).
+
+Queries:
+  c(x)?
+

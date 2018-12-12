@@ -1,0 +1,19 @@
+# Should join more than two tables
+
+Schemes:
+   X(a)
+   Y(b)
+   Z(c)
+   R(a,b,c)
+
+Facts:
+   X('1').
+   Y('2').
+   Z('3').
+
+Rules:
+   R(A,B,C) :- X(A), Y(B), Z(C).
+
+Queries:
+   R(A,B,C)?
+

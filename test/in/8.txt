@@ -1,0 +1,40 @@
+# The rules should complete the reflexive (R), symmetric (S), and transitive (T) closures
+
+Schemes:
+    A(a,b)
+    rA(a,b)
+    R(a,b)
+    colB(b)
+    S(a,b)
+    T(a,b)
+    ST(a,b)
+
+Facts:
+    A('1','2').
+    A('2','3').
+    A('3','4').
+    A('4','5').
+    A('5','6').
+    A('6','7').
+    A('7','8').
+    A('8','9').
+    A('9','10').
+
+Rules:
+    S(X,Y) :- A(X,Y).
+    S(X,Y) :- S(Y,X).
+    rA(a,b) :- A(b,a).
+    R(X,Y) :- A(X,Z),rA(Z,Y).
+    T(X,Y) :- A(X,Y).
+    T(X,Z) :- T(X,Y),T(Y,Z).
+    ST(X,Y) :- ST(Y,X).
+    ST(X,Z) :- ST(X,Y),ST(Y,Z).
+    ST(X,Y) :- A(Y,X).
+
+Queries:
+    S(Q,R)?
+    R(Q,R)?
+    T('1',P)?
+    A('1','2')?
+    S('2','1')?
+    ST(X,Y)?
